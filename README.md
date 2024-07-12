@@ -38,7 +38,23 @@ As we can see from the heatmap above, engagement is mostly correlated with the s
 With these box plots we can see that the players with higher engagement levels tend to play games more often and for longer durations.
 
 ## Modeling
+We used five models to try to make predictions about our target variable of engagement to find what factors were the most important.
+
+1. Our first model was a baseline model with a score of 78% accuracy on both the train and test
+2. The second model was a logistic regression model with the most correlated features, it had a 77% accuracy on the train and test
+3. The third model was a decision tree classifier with a 100% accuracy on the train and 83% accuracy on the test
+4. The fourth used two logistic regression models based on first split from decision tree classifier (SessionsPerWeek). It scored 88% accuracy on the train and 86% accuracy on the test.
+5. The final model was a decision tree classifier with the hyperparameter tuned, it scored the best with a 92% accuracy on the train and 90% accuracy on the test.
 ### Evaluations
+__Baseline model:__ The baseline model provides a benchmark to compare the performance of other models. It shows consistent performance on both train and test sets, indicating that more sophisticated models need to outperform this baseline to be considered effective.
+
+__Logistic Regression Model with Correlated Features:__ This model slightly underperforms compared to the baseline. It suggests that merely using the most correlated features may not capture the complexity of the data. The consistent accuracy on train and test sets indicates no overfitting but suggests room for improvement in feature selection or model complexity.
+
+__Decision Tree Classifier:__ The decision tree shows perfect accuracy on the training set but a significant drop in the test set, indicating overfitting. The model memorizes the training data but fails to generalize to unseen data. Pruning or tuning hyperparameters could help mitigate this overfitting.
+
+__Combined Logistic Regression Models (Split by SessionsPerWeek):__ This approach shows a substantial improvement over the baseline and the previous logistic regression model. The strategy of splitting the data based on a feature (SessionsPerWeek) and then applying logistic regression models enhances performance, indicating that handling subpopulations differently can be beneficial.
+
+__Hyperparameter Tuned Decision Tree Classifier:__ This model achieves the highest accuracy among all tested models, showing both high training and test accuracy, which indicates a good balance between bias and variance. Hyperparameter tuning effectively addresses the overfitting observed in the previous decision tree model, leading to better generalization.
 
 # Conclusions
 
@@ -63,4 +79,3 @@ We could do further and a more thorough analysis of gamer behavior with the foll
 
 For additional info, contact [Cayke Felipe dos Anjos]() or [James Warsing](www.linkedin.com/in/jameswarsing)
 
-See the full analysis in the [Jupyter Notebook]()
